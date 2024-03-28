@@ -11,22 +11,30 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="form-group row">
+    <%= form.label :name, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-6">
+      <%= form.text_field :name, class:"form-control", placeholder: "Name" %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
+  <div class="form-group row">
+    <%= form.label :email, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-6">
+      <%= form.text_field :email, class:"form-control", placeholder: "Email" %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :mobile, style: "display: block" %>
-    <%= form.text_field :mobile %>
+  <div class="form-group row">
+    <%= form.label :mobile, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-6">
+      <%= form.text_field :mobile, class:"form-control", placeholder: "Mobile" %>
+    </div>
   </div>
 
-  <div>
-    <%= form.submit "Submit" %>
+  <div class="form-group row">
+    <div class="col-sm-6">
+      <%= form.submit "Submit", class: "btn btn-primary" %>
+    </div>
   </div>
 <% end %>

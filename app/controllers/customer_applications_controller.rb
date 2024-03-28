@@ -29,7 +29,8 @@ class CustomerApplicationsController < ApplicationController
         format.html { redirect_to root_path, notice: "Customer application was successfully created." }
         format.json { render :show, status: :created, location: @customer_application }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        # format.html { render :new, status: :unprocessable_entity }
+        format.html { render 'home/index', status: :unprocessable_entity }
         format.json { render json: @customer_application.errors, status: :unprocessable_entity }
       end
     end

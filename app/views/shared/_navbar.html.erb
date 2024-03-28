@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <%= link_to "Home", root_path, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarpng" aria-controls="navbarpng" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarpng">
+      <ul class="navbar-nav nav-underline me-auto mb-2 mb-lg-0">
+        <%# if signed_in? %>
+          <li class="nav-item">
+            <%#= link_to "Memberships", memberships_path, class: "nav-link" %>
+          </li>
+        <%# end %>
+      </ul>
+      <%# if signed_in? %>
+        Hello, <%#= current_user.username %>
+        &emsp;
+        <%#= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link navbar-nav ml-auto" %>
+        &emsp;
+        <%# if current_user && current_user.admin? %>
+          <%#= link_to "Create New User", new_user_registration_path, class: "nav-link navbar-nav ml-auto" %>
+        <%# end %>
+      <%# else %>
+        <%#= link_to 'Sign in', new_user_session_path, method: :post, class: "nav-link navbar-nav ml-auto", "aria-current":"page"%>
+      <%# end %>
+    </div>
+  </div>
+</nav>
