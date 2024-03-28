@@ -1,9 +1,22 @@
 class CustomerApplicationsController < ApplicationController
-  before_action :set_customer_application, only: %i[ edit update destroy ]
+  before_action :authenticate_user!, except: %i[ new create ]
+  before_action :set_customer_application, only: %i[ edit update approve reject archive destroy ]
 
   # GET /customer_applications or /customer_applications.json
   def index
-    @customer_applications = CustomerApplication.all
+    @statii = CustomerApplication.pluck(:status).uniq
+    case params[:status]
+    when 'Pending'
+      @customer_applications = CustomerApplication.where(status: 'Pending')
+    when 'Approved'
+      @customer_applications = CustomerApplication.where(status: 'Approved')
+    when 'Rejected'
+      @customer_applications = CustomerApplication.where(status: 'Rejected')
+    when 'Archived'
+      @customer_applications = CustomerApplication.where(status: 'Archived')
+    else
+      @customer_applications = CustomerApplication.where.not(status: "Archived").order(:created_at)
+    end
   end
 
   # GET /customer_applications/new
@@ -21,8 +34,11 @@ class CustomerApplicationsController < ApplicationController
 
     respond_to do |format|
       if @customer_application.save
-        # format.html { redirect_to customer_application_url(@customer_application), notice: "Customer application was successfully created." }
-        format.html { redirect_to root_path, notice: "Customer application was successfully created." }
+        if current_user
+          format.html { redirect_to customer_applications_path, notice: "Customer application was successfully created." }
+        else
+          format.html { redirect_to root_path, notice: "Customer application was successfully created." }
+        end
         format.json { render :show, status: :created, location: @customer_application }
       else
         # format.html { render :new, status: :unprocessable_entity }
@@ -53,6 +69,21 @@ class CustomerApplicationsController < ApplicationController
       format.html { redirect_to customer_applications_url, notice: "Customer application was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def approve
+    @customer_application.update(status: 'Approved')
+    redirect_to customer_applications_url
+  end
+
+  def reject
+    @customer_application.update(status: 'Rejected')
+    redirect_to customer_applications_url
+  end
+
+  def archive
+    @customer_application.update(status: 'Archived')
+    redirect_to customer_applications_url
   end
 
   private

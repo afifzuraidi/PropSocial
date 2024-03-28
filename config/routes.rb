@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  resources :customer_applications
+  devise_for :users
+  resources :customer_applications do
+    member do
+      get 'approve'
+      get 'reject'
+      get 'archive'
+    end
+  end
+
   # get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

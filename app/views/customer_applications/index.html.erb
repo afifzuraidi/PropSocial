@@ -1,7 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
 <%= title(controller_path) %> 
-
+<%= link_to (content_tag(:i, "", class: 'fas fa-filter fa-xs') + " All"), customer_applications_path, class: "btn btn-outline-primary btn-sm"%>
+<% @statii.each do | s |%>
+  <%= link_to (content_tag(:i, "", class: 'fas fa-filter fa-xs') + s), customer_applications_path(status: s), class: "btn btn-outline-primary btn-sm"%>
+<% end %>
 <div id="customer_applications">
   <table class="table">
     <thead>

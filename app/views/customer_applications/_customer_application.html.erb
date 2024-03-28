@@ -2,14 +2,14 @@
   <td><%= customer_application.name %></td>
   <td><%= customer_application.email %></td>
   <td><%= customer_application.mobile %></td>
-  <td><%= image_tag customer_application.photo, style: "width:150px;height150px;" %></td>
+  <td><%= image_tag customer_application.photo, style: "width:100px;height:100px;" %></td>
   <td><%= customer_application.status %></td>
   <td class="action">
-    <%# if can? :update, CustomerApplication %>
-      <%= action_link("edit", customer_application, controller_path) %>
-    <%# end %>
-    <%# if can? :destroy, CustomerApplication %>
-      <%= action_link("delete", customer_application, controller_path) %>
-    <%# end %>
+    <%= action_link("edit", customer_application, controller_path) %>
+    <%= action_link("delete", customer_application, controller_path) %>
+    <hr>
+    <%= action_link("approve", customer_application, controller_path) %>
+    <%= action_link("reject", customer_application, controller_path) %>
+    <%= action_link("archive", customer_application, controller_path) %>
   </td>
 </div>
