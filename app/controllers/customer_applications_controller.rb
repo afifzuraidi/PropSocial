@@ -4,7 +4,7 @@ class CustomerApplicationsController < ApplicationController
 
   # GET /customer_applications or /customer_applications.json
   def index
-    @statii = CustomerApplication.pluck(:status).uniq
+    @statii = CustomerApplication.order(status: :asc).pluck(:status).uniq
     case params[:status]
     when 'Pending'
       @customer_applications = CustomerApplication.where(status: 'Pending')
