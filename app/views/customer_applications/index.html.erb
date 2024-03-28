@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Customer applications</h1>
+
+<div id="customer_applications">
+  <% @customer_applications.each do |customer_application| %>
+    <%= render customer_application %>
+    <p>
+      <%= link_to "Show this customer application", customer_application %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New customer application", new_customer_application_path %>
