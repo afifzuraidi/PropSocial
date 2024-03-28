@@ -1,17 +1,15 @@
 <div id="<%= dom_id customer_application %>">
-  <p>
-    <strong>Name:</strong>
-    <%= customer_application.name %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= customer_application.email %>
-  </p>
-
-  <p>
-    <strong>Mobile:</strong>
-    <%= customer_application.mobile %>
-  </p>
-
+  <td><%= customer_application.name %></td>
+  <td><%= customer_application.email %></td>
+  <td><%= customer_application.mobile %></td>
+  <td><%= image_tag customer_application.photo, style: "width:150px;height150px;" %></td>
+  <td><%= customer_application.status %></td>
+  <td class="action">
+    <%# if can? :update, CustomerApplication %>
+      <%= action_link("edit", customer_application, controller_path) %>
+    <%# end %>
+    <%# if can? :destroy, CustomerApplication %>
+      <%= action_link("delete", customer_application, controller_path) %>
+    <%# end %>
+  </td>
 </div>

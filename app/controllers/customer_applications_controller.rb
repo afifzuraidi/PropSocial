@@ -1,13 +1,9 @@
 class CustomerApplicationsController < ApplicationController
-  before_action :set_customer_application, only: %i[ show edit update destroy ]
+  before_action :set_customer_application, only: %i[ edit update destroy ]
 
   # GET /customer_applications or /customer_applications.json
   def index
     @customer_applications = CustomerApplication.all
-  end
-
-  # GET /customer_applications/1 or /customer_applications/1.json
-  def show
   end
 
   # GET /customer_applications/new
@@ -40,7 +36,7 @@ class CustomerApplicationsController < ApplicationController
   def update
     respond_to do |format|
       if @customer_application.update(customer_application_params)
-        format.html { redirect_to customer_application_url(@customer_application), notice: "Customer application was successfully updated." }
+        format.html { redirect_to customer_applications_url, notice: "Customer application was successfully updated." }
         format.json { render :show, status: :ok, location: @customer_application }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -67,6 +63,6 @@ class CustomerApplicationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def customer_application_params
-      params.require(:customer_application).permit(:name, :email, :mobile)
+      params.require(:customer_application).permit(:name, :email, :mobile, :photo, :status)
     end
 end

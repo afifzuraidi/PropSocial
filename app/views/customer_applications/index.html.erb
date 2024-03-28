@@ -1,14 +1,25 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Customer applications</h1>
+<%= title(controller_path) %> 
 
 <div id="customer_applications">
-  <% @customer_applications.each do |customer_application| %>
-    <%= render customer_application %>
-    <p>
-      <%= link_to "Show this customer application", customer_application %>
-    </p>
-  <% end %>
+  <table class="table">
+    <thead>
+      <tr>
+        <td><strong>Name</strong></td>
+        <td><strong>Email</strong></td>
+        <td><strong>Mobile</strong></td>
+        <td><strong>Photo</strong></td>
+        <td><strong>Status</strong></td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @customer_applications.each do |customer_application| %>
+        <tr>
+          <%= render customer_application %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-
-<%= link_to "New customer application", new_customer_application_path %>
