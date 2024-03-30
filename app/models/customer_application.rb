@@ -14,9 +14,9 @@ class CustomerApplication < ApplicationRecord
         #   errors.add(:photo, "is too big")
         # end
       
-        acceptable_types = ["image/jpeg", "image/png"]
+        acceptable_types = ["image/*"]
         unless acceptable_types.include?(photo.content_type)
-          errors.add(:photo, "must be a JPEG or PNG")
+          errors.add(:photo, "must be an image")
         end
     end
 end
