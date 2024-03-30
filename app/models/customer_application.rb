@@ -10,9 +10,9 @@ class CustomerApplication < ApplicationRecord
     def acceptable_image
         return unless photo.attached?
       
-        unless photo.blob.byte_size <= 1.megabyte
-          errors.add(:photo, "is too big")
-        end
+        # unless photo.blob.byte_size <= 1.megabyte
+        #   errors.add(:photo, "is too big")
+        # end
       
         acceptable_types = ["image/jpeg", "image/png"]
         unless acceptable_types.include?(photo.content_type)
